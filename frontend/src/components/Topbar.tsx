@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Register from './Register';
 
 function Topbar() {
   return (
@@ -14,6 +15,9 @@ function Topbar() {
             </Nav>
             <Nav>
               <Nav.Link href="/login">Zaloguj</Nav.Link>
+            </Nav>
+            <Nav>
+              <Register />
             </Nav>
           </Navbar.Collapse>
         </Container>
