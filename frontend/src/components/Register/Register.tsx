@@ -1,26 +1,26 @@
 import { ChangeEvent, useState, FormEvent } from 'react';
-import { Button, Modal, Form, FormLabel } from 'react-bootstrap';
-
+import { Button, Modal, Form, Input } from 'antd';
+import './Register.scss';
 
 function Register() {
     const [showModal, setShowModal] = useState<boolean>(false);
     const [formData, setFormData] = useState<{
-        email: string,
-        password: string,
-        repeatPassword: string
+        email: string;
+        password: string;
+        repeatPassword: string;
     }>({
         email: '',
         password: '',
         repeatPassword: ''
     });
-    
+
     const handleShowModal = () => {
         setShowModal(true);
-    }
+    };
 
     const handleCloseModal = () => {
         setShowModal(false);
-    }
+    };
 
     const handleChangeForm = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -28,64 +28,99 @@ function Register() {
             ...formData,
             [name]: value
         });
-    }
+    };
 
     const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('Form Data:', formData);
-      };
-
+    };
 
     return (
         <>
-            <Button onClick={handleShowModal}>
+            <Button type="primary" onClick={handleShowModal}>
                 Zarejestruj się
             </Button>
-            <Modal show={showModal} onHide={handleCloseModal}>
-            <Modal.Header className="text-center" closeButton>
-                <Modal.Title className="w-100">Rejestracja</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleSubmitForm}>
-                    <Form.Group controlId="formEmail" className="mb-3">
-                        <FormLabel>Adres E-mail: </FormLabel>
-                        <Form.Control
-                        type="text"
-                        placeholder="Adres E-mail"
+            <Modal
+                title="Rejestracja"
+                open={showModal}
+                onCancel={handleCloseModal}
+                footer={null}
+                className='registerModal'
+            >
+                <Form layout="vertical" onSubmitCapture={handleSubmitForm}>
+                    <Form.Item
+                        label="Adres E-mail"
                         name="email"
-                        value={formData.email}
-                        onChange={handleChangeForm}
-                        autoFocus
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Proszę podać adres e-mail',
+                            },
+                        ]}
+                    >
+                        <Input
+                            type="email"
+                            placeholder="Adres E-mail"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChangeForm}
+                            autoFocus
                         />
-                    </Form.Group>
-                    <Form.Group controlId="formPassword" className="mb-3">
-                        <FormLabel>Hasło: </FormLabel>
-                        <Form.Control
-                        type="password"
-                        placeholder="Hasło"
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Hasło"
                         name="password"
-                        value={formData.password}
-                        onChange={handleChangeForm}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Proszę podać hasło',
+                            },
+                        ]}
+                    >
+                        <Input.Password
+                            placeholder="Hasło"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChangeForm}
                         />
-                    </Form.Group>
-                    <Form.Group controlId="formRepeatPassword" className="mb-3">
-                        <FormLabel>Powtórz hasło: </FormLabel>
-                        <Form.Control
-                        type="repeatPassword"
-                        placeholder="Hasło"
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Powtórz hasło"
                         name="repeatPassword"
-                        value={formData.repeatPassword}
-                        onChange={handleChangeForm}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Proszę powtórzyć hasło',
+                            },
+                            ({ getFieldValue }) => ({
+                                validator(_, value) {
+                                    if (!value || getFieldValue('password') === value) {
+                                        return Promise.resolve();
+                                    }
+                                    return Promise.reject(new Error('Hasła muszą być takie same!'));
+                                },
+                            }),
+                        ]}
+                    >
+                        <Input.Password
+                            placeholder="Powtórz hasło"
+                            name="repeatPassword"
+                            value={formData.repeatPassword}
+                            onChange={handleChangeForm}
                         />
-                    </Form.Group>
-                    <Button type="submit" className="m-auto">
-                        Zarejestruj się
-                    </Button>
+                    </Form.Item>
+
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" block>
+                            Zarejestruj się
+                        </Button>
+                    </Form.Item>
                 </Form>
-            </Modal.Body>
             </Modal>
         </>
-      );
-  }
-  
-  export default Register;
+    );
+}
+
+export default Register;

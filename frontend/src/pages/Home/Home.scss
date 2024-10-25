@@ -1,0 +1,100 @@
+@use '../../variables';
+
+.home_section {
+    width: 100vw;
+    height: 100svh;
+    min-height: 770px;
+    background-image: url('../../assets/volunteer-unsplash.jpg');
+    background-size: cover;
+    background-position: 50% 50%;
+
+    @media screen and (max-width: variables.$resize-lg) {
+        background-image: none;
+    }
+
+    .home_sectionWrapper {
+        width: 50%;
+        max-width: 700px;
+        height: 100%;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        background-color: variables.$darkGrey;
+        padding: 12rem 2rem;
+
+        @media screen and (max-width: variables.$resize-lg) {
+            width: 100%;
+            max-width: 100vw;
+            height: auto;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            padding: 4rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .home_sectionWrapperText {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 2rem;
+            color: #fff;
+            max-width: 600px;
+            height: 100%;
+
+            h2 {
+                font-size: 20px;
+                font-weight: 300;
+                text-align: left;
+            }
+        }
+
+        .home_animatedBtn {
+            transition: background-color 0.3s ease;
+            z-index: 1;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(52, 152, 219, 0.5); // Tło z mniejszym kryciem
+                border-radius: 5px;
+                z-index: -1;
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes pulse {
+                0% {
+                  transform: scaleY(1) scaleX(1);
+                  opacity: 0.6;
+                }
+                75% {
+                  transform: scaleY(1.6) scaleX(1.2);
+                  opacity: 0.3;
+                }
+                100% {
+                    transform: scaleY(1.6) scaleX(1.2);
+                    opacity:0;
+                }
+              }
+        }
+          
+    }
+
+    .home_sectionImageVolunteer {
+        display: none;
+      
+        @media screen and (max-width: variables.$resize-lg) {
+          display: block;
+          width: 100%;
+          height: 500px;
+          background-image: url('../../assets/volunteer-unsplash.jpg');
+          background-size: cover;
+          background-position: 50% 50%;
+        }
+      }
+}
