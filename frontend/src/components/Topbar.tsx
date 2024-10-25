@@ -1,7 +1,8 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Register from './Register';
+import Login from './Login/Login';
+import Register from './Register/Register';
 
 function Topbar() {
   return (
@@ -14,7 +15,7 @@ function Topbar() {
               <Nav.Link href="/">Home</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="/login">Zaloguj</Nav.Link>
+              <Login />
             </Nav>
             <Nav>
               <Register />
