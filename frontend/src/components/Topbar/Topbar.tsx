@@ -1,10 +1,17 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import {Button} from 'antd';
 import Navbar from 'react-bootstrap/Navbar';
-import Register from '../Register/Register';
-import Login from '../Login/Login';
+import AuthModal from '../Auth/AuthModal';
+import React, { useRef } from 'react';
 
-function Topbar() {
+const Topbar: React.FC = () => {
+  const authModalRef = useRef<{ showModal: () => void }>(null);
+  
+  const openAuthModal = () => {
+    authModalRef.current?.showModal();
+  };
+
   return (
       <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
         <Container>
@@ -15,13 +22,15 @@ function Topbar() {
               <Nav.Link href="/">Home</Nav.Link>
             </Nav>
             <Nav>
-              <Login />
-              <Register />
+              <Button type="primary" onClick={openAuthModal}>
+                Zaloguj
+              </Button>
+              <AuthModal ref={authModalRef} defaultMode="login" />
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    );
-}
+    )
+  }
 
 export default Topbar;

@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useRef } from "react";
 import './Home.scss';
 import { Button } from "antd";
 import heartHand from '../../assets/heart-hand.svg';
+import AuthModal from "../../components/Auth/AuthModal";
 
-const Home = () => {
+const Home: React.FC = () => {
+
+    const authModalRef = useRef<{ showModal: () => void }>(null);
+  
+    const openAuthModal = () => {
+      authModalRef.current?.showModal();
+    };
+
     return (
         <section className="home_section">
             <div className="home_sectionImageVolunteer">
@@ -19,9 +27,11 @@ const Home = () => {
                     type="primary"
                     size="large"
                     className="home_animatedBtn"
+                    onClick={openAuthModal}
                     >
                         Dołącz do nas!
                     </Button>
+                    <AuthModal ref={authModalRef} defaultMode="register" />
                 </div>
             </div>
         </section>
