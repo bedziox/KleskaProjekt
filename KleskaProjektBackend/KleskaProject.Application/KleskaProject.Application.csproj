@@ -2,9 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-      <LangVersion>13.0</LangVersion>
+      <LangVersion>latest</LangVersion>
       <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="EventHandlers\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
 
 </Project>

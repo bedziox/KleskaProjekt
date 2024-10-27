@@ -4,12 +4,14 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <LangVersion>13.0</LangVersion>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="EntityConfiguration\" />
-        <Folder Include="Extensions\" />
-        <Folder Include="Repositories\" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\KleskaProject.Domain\KleskaProject.Domain.csproj" />
     </ItemGroup>
 </Project>
