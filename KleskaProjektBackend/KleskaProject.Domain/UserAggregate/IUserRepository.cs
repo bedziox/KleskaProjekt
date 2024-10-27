@@ -1,10 +1,12 @@
-﻿namespace KleskaProject.Domain.UserAggregate;
+﻿using KleskaProject.Domain.Common.Shared;
+
+namespace KleskaProject.Domain.UserAggregate;
 
 public interface IUserRepository
 {
     User GetById(Guid id);
     Task<User> GetByEmail(string email);
-    bool DeleteById(Guid id);
+    Result DeleteById(Guid id);
     IEnumerable<User> GetAll();
     Task<IEnumerable<User>> GetAllAsync();
     void Add(User user);

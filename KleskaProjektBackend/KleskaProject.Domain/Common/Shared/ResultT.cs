@@ -1,6 +1,6 @@
 ﻿namespace KleskaProject.Domain.Common.Shared
 {
-    public sealed class Result<T>
+    public class Result<T>
     {
         private readonly Error? _error;
 

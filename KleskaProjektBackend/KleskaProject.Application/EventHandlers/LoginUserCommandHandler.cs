@@ -16,7 +16,7 @@ namespace KleskaProject.Application.EventHandlers
 
         public async Task<Result<string>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
-            var result = await _userService.LoginUserAsync(request.user.Email, request.user.Password);
+            var result = await _userService.LoginUserAsync(request.email, request.password);
             return result;
         }
     }

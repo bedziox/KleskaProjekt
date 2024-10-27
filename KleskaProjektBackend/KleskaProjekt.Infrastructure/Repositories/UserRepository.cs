@@ -1,5 +1,7 @@
-﻿using KleskaProject.Domain.UserAggregate;
+﻿using KleskaProject.Domain.Common.Shared;
+using KleskaProject.Domain.UserAggregate;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace KleskaProject.Infrastructure.Persistence;
 
@@ -7,7 +9,7 @@ public class UserRepository : IUserRepository
 {
     private readonly ApplicationDbContext _context;
 
-    UserRepository(ApplicationDbContext context)
+    public UserRepository(ApplicationDbContext context)
     {
         _context = context;
     }
@@ -17,15 +19,15 @@ public class UserRepository : IUserRepository
         _context.Users.Add(user);
     }
 
-    public bool DeleteById(Guid id)
+    public Result DeleteById(Guid id)
     {
         var user = _context.Users.FirstOrDefault(db => db.Id == id);
         if (user == null)
         {
-            return false;
+            return Result.Failure(new Error(HttpStatusCode.NotFound, $"User with ID: {id} not found"));
         }
-        _context.Users.Remove(user);
-        return true;
+
+        return Result.Success();
     }
 
     public IEnumerable<User> GetAll()
