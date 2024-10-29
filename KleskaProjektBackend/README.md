@@ -8,4 +8,5 @@
 
 ## To make new migration:
 * Install dotnet ef tools globally
-* dotnet ef migrations <<MigrationName>> --project "KleskaProject.Infrastructure" --startup-project "KleskaProject.API"
+* dotnet ef migrations **MigrationName** --project "KleskaProject.Infrastructure" --startup-project "KleskaProject.API"
+Newest migration should be applied on start of the application
