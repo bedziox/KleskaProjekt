@@ -5,14 +5,17 @@ using System.Text.RegularExpressions;
 namespace KleskaProject.Domain.UserAggregate;
 public class User : ValueObject
 {
-    public Guid Id = new();
+    public Guid Id;
     public string FirstName { get; set; } = String.Empty;
     public string LastName { get; set; } = String.Empty;
     public string Email { get; set; } = String.Empty;
     public string PasswordHash { get; set; } = String.Empty;
     public UserDetails UserDetails { get; set; }
 
-    public User() { }
+    public User()
+    {
+        Id = Guid.NewGuid();
+    }
 
     protected override IEnumerable<object> GetEqualityComponents()
     {
@@ -60,7 +63,7 @@ public class UserBuilder
             LastName = request.LastName,
             Email = request.Email,
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password, 17),
-            UserDetails = request.UserDetails
+            UserDetails = new UserDetails(request.PhoneNumber)
         };
         return user;
     }

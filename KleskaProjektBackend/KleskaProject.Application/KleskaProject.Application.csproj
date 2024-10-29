@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KleskaProject.Domain\KleskaProject.Domain.csproj" />
-    <ProjectReference Include="..\KleskaProjekt.Infrastructure\KleskaProjekt.Infrastructure.csproj" />
+	<ProjectReference Include="..\KleskaProject.Infrastructure\KleskaProject.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

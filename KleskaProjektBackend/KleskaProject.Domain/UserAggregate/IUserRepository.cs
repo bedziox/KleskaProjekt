@@ -9,6 +9,7 @@ public interface IUserRepository
     Result DeleteById(Guid id);
     IEnumerable<User> GetAll();
     Task<IEnumerable<User>> GetAllAsync();
+    Task<bool> ExistsByEmailAsync(string email);
     void Add(User user);
     bool IsEmailTaken(string email);
 }

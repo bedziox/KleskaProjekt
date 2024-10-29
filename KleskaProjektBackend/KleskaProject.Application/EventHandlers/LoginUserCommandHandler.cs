@@ -1,15 +1,15 @@
 ﻿using KleskaProject.Application.Commands;
+using KleskaProject.Application.Services;
 using KleskaProject.Domain.Common.Shared;
-using KleskaProject.Domain.UserAggregate;
 using MediatR;
 
 namespace KleskaProject.Application.EventHandlers
 {
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, Result<string>>
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
 
-        public LoginUserCommandHandler(UserService userService)
+        public LoginUserCommandHandler(IUserService userService)
         {
             _userService = userService;
         }

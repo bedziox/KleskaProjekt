@@ -1,22 +1,22 @@
 ﻿using KleskaProject.Domain.Common.Models;
+using System.Text.Json.Serialization;
 
 namespace KleskaProject.Domain.UserAggregate;
 public class UserDetails : Entity<Guid>
 {
-    public UserDetails(Guid id, Address address, PhoneNumber number) : base(id)
+    [JsonConstructor]
+    public UserDetails() : base(Guid.NewGuid()) { }
+    public UserDetails(PhoneNumber number) : base(Guid.NewGuid())
     {
-        UserId = id;
-        Address = address;
         phoneNumber = number;
         IsActive = true;
     }
 
-    public Guid UserId { get; private set; }
-    public DateTime CreationTime { get; set; } = DateTime.Now;
+    public Guid UserId { get; set; }
+    public DateTime CreationTime { get; set; } = DateTime.UtcNow;
 
-    public bool IsActive { get; private set; }
+    public bool IsActive { get; set; }
 
-    public Address Address { get; set; }
     public PhoneNumber phoneNumber { get; set; }
 
     public void Deactivate()

@@ -1,14 +1,14 @@
-﻿using KleskaProject.Domain.Common.Shared;
-using KleskaProject.Domain.UserAggregate;
+﻿using KleskaProject.Application.Services;
+using KleskaProject.Domain.Common.Shared;
 using MediatR;
 
 namespace KleskaProject.Application.Commands.User
 {
     public class ValidateTokenCommandHandler : IRequestHandler<ValidateTokenCommand, Result<string>>
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
 
-        public ValidateTokenCommandHandler(UserService userService)
+        public ValidateTokenCommandHandler(IUserService userService)
         {
             _userService = userService;
         }

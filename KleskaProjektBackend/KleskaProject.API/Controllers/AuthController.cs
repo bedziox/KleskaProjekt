@@ -2,7 +2,6 @@
 using KleskaProject.Domain.UserAggregate;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace KleskaProject.API.Controllers;
 
@@ -16,52 +15,39 @@ public class AuthController : Controller
     {
         _mediator = mediator;
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     [HttpPost("register")]
-    public async Task<HttpResponseMessage> Register(UserDto request)
+    public async Task<IActionResult> Register([FromBody] UserDto request)
     {
         var result = await _mediator.Send(new RegisterUserCommand(request));
-        var httpResult = new HttpResponseMessage();
         if (result.IsSuccess)
         {
-            httpResult.StatusCode = HttpStatusCode.OK;
-            httpResult.Content = new StringContent("ID: " + result.Value);
-            return httpResult;
+            return Ok(result.Value);
         }
-        httpResult = new HttpResponseMessage(result.Error.StatusCode);
-        httpResult.Content = new StringContent("Error: " + result.Error.Details);
-        return httpResult;
+        return StatusCode((int)result.Error.StatusCode, new { error = result.Error.Details });
     }
     [HttpPost("login")]
-    public async Task<HttpResponseMessage> Login(string email, string password)
+    public async Task<IActionResult> Login(string email, string password)
     {
         var result = await _mediator.Send(new LoginUserCommand(email, password));
-        var httpResult = new HttpResponseMessage();
         if (result.IsSuccess)
         {
-            httpResult.StatusCode = HttpStatusCode.OK;
-            httpResult.Content = new StringContent("ID: " + result.Value);
-            return httpResult;
+            return Ok(result.Value);
         }
-        httpResult = new HttpResponseMessage(result.Error.StatusCode);
-        httpResult.Content = new StringContent("Error: " + result.Error.Details);
-        return httpResult;
-
-
+        return StatusCode((int)result.Error.StatusCode, new { error = result.Error.Details });
     }
     [HttpGet("valid")]
-    public async Task<HttpResponseMessage> ValidateToken(String token)
+    public async Task<IActionResult> ValidateToken(String token)
     {
         var result = await _mediator.Send(new ValidateTokenCommand(token));
-        var httpResult = new HttpResponseMessage();
         if (result.IsSuccess)
         {
-            httpResult.StatusCode = HttpStatusCode.OK;
-            httpResult.Content = new StringContent("Token: " + result.Value);
-            return httpResult;
+            return Ok(result.Value);
         }
-        httpResult = new HttpResponseMessage(result.Error.StatusCode);
-        httpResult.Content = new StringContent("Error: " + result.Error.Details);
-        return httpResult;
+        return StatusCode((int)result.Error.StatusCode, new { error = result.Error.Details });
     }
 }

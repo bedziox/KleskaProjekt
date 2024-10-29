@@ -11,21 +11,28 @@ namespace KleskaProject.Domain.UserAggregate;
 public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
+    private readonly IPhoneNumberRepository _phoneNumberRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly string _keyToken = "KleskaProjektStringToken";
+    private readonly string _keyToken = "KleskaProjektStringTokenThatIsLongEnoughForHmacSha512AlgorithmKeySize";
 
-    public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork)
+    public UserService() { }
+    public UserService(IUserRepository userRepository, IPhoneNumberRepository phoneNumberRepository, IUnitOfWork unitOfWork)
     {
         _userRepository = userRepository;
+        _phoneNumberRepository = phoneNumberRepository;
         _unitOfWork = unitOfWork;
     }
 
     public async Task<Result<Guid>> RegisterUserAsync(UserDto request)
     {
         var newUser = UserBuilder.BuildUser(request);
+        if (await _userRepository.ExistsByEmailAsync(newUser.Email))
+        {
+            return Result<Guid>.Failure(new Error(HttpStatusCode.Conflict, "Email already in use. Please use a different email."));
+        }
         _userRepository.Add(newUser);
+        _phoneNumberRepository.Add(newUser.UserDetails.phoneNumber);
         await _unitOfWork.SaveChangesAsync();
-
         return Result<Guid>.Success(newUser.Id);
     }
 
@@ -42,14 +49,14 @@ public class UserService : IUserService
     public Result<string> ValidateUser(string token)
     {
         JwtSecurityToken newToken = new JwtSecurityToken(token);
-        if (newToken.ValidTo > DateTime.Now)
+        if (newToken.ValidTo > DateTime.UtcNow)
         {
             return Result<string>.Success(token);
         }
         return Result<string>.Failure(new Error(HttpStatusCode.Unauthorized, "Token not valid, login again"));
     }
 
-    private string CreateToken(User user)
+    public string CreateToken(User user)
     {
         List<Claim> claims = new List<Claim>()
         {

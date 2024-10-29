@@ -17,6 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KleskaProject.Application\KleskaProject.Application.csproj" />
+    <ProjectReference Include="..\KleskaProject.Domain\KleskaProject.Domain.csproj" />
+	<ProjectReference Include="..\KleskaProject.Infrastructure\KleskaProject.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 

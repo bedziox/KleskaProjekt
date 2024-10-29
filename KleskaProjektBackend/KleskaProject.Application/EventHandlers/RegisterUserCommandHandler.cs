@@ -1,14 +1,14 @@
-﻿using KleskaProject.Domain.Common.Shared;
-using KleskaProject.Domain.UserAggregate;
+﻿using KleskaProject.Application.Services;
+using KleskaProject.Domain.Common.Shared;
 using MediatR;
 
 namespace KleskaProject.Application.Commands.User
 {
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Result<Guid>>
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
 
-        public RegisterUserCommandHandler(UserService userService)
+        public RegisterUserCommandHandler(IUserService userService)
         {
             _userService = userService;
         }

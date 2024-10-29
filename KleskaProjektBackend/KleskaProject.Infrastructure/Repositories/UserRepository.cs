@@ -45,6 +45,11 @@ public class UserRepository : IUserRepository
         return (User)_context.Users.Where(db => db.Id == id);
     }
 
+    public async Task<bool> ExistsByEmailAsync(string email)
+    {
+        return await _context.Users.AnyAsync(u => u.Email == email);
+    }
+
     public async Task<User> GetByEmail(string email)
     {
         return await _context.Users.Where(db => db.Email == email).SingleOrDefaultAsync();

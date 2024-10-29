@@ -2,6 +2,7 @@
 using KleskaProject.Infrastructure.Persistence;
 using KleskaProjekt.Domain.Common.Shared;
 using KleskaProjekt.Infrastructure.Extensions;
+using KleskaProjekt.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace KleskaProject.Application
@@ -12,6 +13,7 @@ namespace KleskaProject.Application
         {
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPhoneNumberRepository, PhoneNumberRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
