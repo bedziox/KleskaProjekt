@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using KleskaProject.Application.Services;
+using KleskaProject.Domain.UserAggregate;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace KleskaProject.Application
 {
-    internal class DependencyInjection
+    public static class DependencyInjection
     {
+        public static IServiceCollection AddAppliaction(this IServiceCollection services)
+        {
+            services.AddScoped<IUserService, UserService>();
+
+            return services;
+
+        }
     }
 }
