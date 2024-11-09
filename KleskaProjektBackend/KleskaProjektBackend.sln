@@ -3,25 +3,30 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleskaProjekt.API", "KleskaProjekt.API\KleskaProjekt.API.csproj", "{E1A6DBC7-E8CD-4E8B-B9E9-9319327B07BE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KleskaProjekt.Infrastructure", "KleskaProjekt.Infrastructure\KleskaProjekt.Infrastructure.csproj", "{30B26439-1A89-4264-ADE2-129EF58F47A9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1A5EB7BE-C09D-4DD6-B08C-B3085D1F9D71}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AA81E5D2-45C0-4790-A8F0-928FDE4CC1EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.IntegrationTests", "Application.IntegrationTests\Application.IntegrationTests.csproj", "{E128FCF6-2DD6-48F5-943E-48CD7A326E3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.IntegrationTests", "Application.IntegrationTests\Application.IntegrationTests.csproj", "{E128FCF6-2DD6-48F5-943E-48CD7A326E3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "Application.UnitTests\Application.UnitTests.csproj", "{F940D4C9-D5F9-48A9-8733-3D471CDAEB6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.UnitTests", "Application.UnitTests\Application.UnitTests.csproj", "{F940D4C9-D5F9-48A9-8733-3D471CDAEB6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitTests", "Domain.UnitTests\Domain.UnitTests.csproj", "{D56539E3-16E6-4C90-95E7-8AF9D3CDDFAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.UnitTests", "Domain.UnitTests\Domain.UnitTests.csproj", "{D56539E3-16E6-4C90-95E7-8AF9D3CDDFAA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8F14D247-7432-483B-BA7F-D2856A685C7C}"
+	ProjectSection(SolutionItems) = preProject
+		.env = .env
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KleskaProject.Domain", "KleskaProject.Domain\KleskaProject.Domain.csproj", "{F23EDCEF-FCBF-4EBC-A828-D6126B5E8568}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleskaProject.Domain", "KleskaProject.Domain\KleskaProject.Domain.csproj", "{F23EDCEF-FCBF-4EBC-A828-D6126B5E8568}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KleskaProject.Application", "KleskaProject.Application\KleskaProject.Application.csproj", "{077D59E3-DC57-4180-891A-59D0ED80B583}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleskaProject.Application", "KleskaProject.Application\KleskaProject.Application.csproj", "{077D59E3-DC57-4180-891A-59D0ED80B583}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleskaProject.API", "KleskaProject.API\KleskaProject.API.csproj", "{218C9035-DBEE-498E-8589-FAF2F54E18ED}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1C635902-74E9-47BE-9062-CEDE50AA962F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleskaProject.Infrastructure", "KleskaProject.Infrastructure\KleskaProject.Infrastructure.csproj", "{1D0D4E68-3D39-499E-9C15-5090AC05E5EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,14 +34,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E1A6DBC7-E8CD-4E8B-B9E9-9319327B07BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1A6DBC7-E8CD-4E8B-B9E9-9319327B07BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1A6DBC7-E8CD-4E8B-B9E9-9319327B07BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1A6DBC7-E8CD-4E8B-B9E9-9319327B07BE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{30B26439-1A89-4264-ADE2-129EF58F47A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30B26439-1A89-4264-ADE2-129EF58F47A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{30B26439-1A89-4264-ADE2-129EF58F47A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30B26439-1A89-4264-ADE2-129EF58F47A9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E128FCF6-2DD6-48F5-943E-48CD7A326E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E128FCF6-2DD6-48F5-943E-48CD7A326E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E128FCF6-2DD6-48F5-943E-48CD7A326E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,18 +54,30 @@ Global
 		{077D59E3-DC57-4180-891A-59D0ED80B583}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{077D59E3-DC57-4180-891A-59D0ED80B583}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{077D59E3-DC57-4180-891A-59D0ED80B583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{218C9035-DBEE-498E-8589-FAF2F54E18ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{218C9035-DBEE-498E-8589-FAF2F54E18ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{218C9035-DBEE-498E-8589-FAF2F54E18ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{218C9035-DBEE-498E-8589-FAF2F54E18ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C635902-74E9-47BE-9062-CEDE50AA962F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C635902-74E9-47BE-9062-CEDE50AA962F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C635902-74E9-47BE-9062-CEDE50AA962F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C635902-74E9-47BE-9062-CEDE50AA962F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D0D4E68-3D39-499E-9C15-5090AC05E5EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D0D4E68-3D39-499E-9C15-5090AC05E5EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D0D4E68-3D39-499E-9C15-5090AC05E5EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D0D4E68-3D39-499E-9C15-5090AC05E5EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E1A6DBC7-E8CD-4E8B-B9E9-9319327B07BE} = {1A5EB7BE-C09D-4DD6-B08C-B3085D1F9D71}
-		{30B26439-1A89-4264-ADE2-129EF58F47A9} = {1A5EB7BE-C09D-4DD6-B08C-B3085D1F9D71}
 		{E128FCF6-2DD6-48F5-943E-48CD7A326E3B} = {AA81E5D2-45C0-4790-A8F0-928FDE4CC1EF}
 		{F940D4C9-D5F9-48A9-8733-3D471CDAEB6C} = {AA81E5D2-45C0-4790-A8F0-928FDE4CC1EF}
 		{D56539E3-16E6-4C90-95E7-8AF9D3CDDFAA} = {AA81E5D2-45C0-4790-A8F0-928FDE4CC1EF}
 		{F23EDCEF-FCBF-4EBC-A828-D6126B5E8568} = {1A5EB7BE-C09D-4DD6-B08C-B3085D1F9D71}
 		{077D59E3-DC57-4180-891A-59D0ED80B583} = {1A5EB7BE-C09D-4DD6-B08C-B3085D1F9D71}
+		{218C9035-DBEE-498E-8589-FAF2F54E18ED} = {1A5EB7BE-C09D-4DD6-B08C-B3085D1F9D71}
+		{1D0D4E68-3D39-499E-9C15-5090AC05E5EF} = {1A5EB7BE-C09D-4DD6-B08C-B3085D1F9D71}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78623B9A-5A5A-4D3F-A30C-31014313B376}
