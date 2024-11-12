@@ -1,17 +1,30 @@
 import { ChangeEvent, useState, FormEvent } from 'react';
 import { Button, Modal, Form, Input } from 'antd';
+//import axios from 'axios';
 import './Register.scss';
 
 function Register() {
     const [showModal, setShowModal] = useState<boolean>(false);
     const [formData, setFormData] = useState<{
+        firstName: string;
+        lastName: string;
         email: string;
         password: string;
         repeatPassword: string;
+        phoneNumber: {
+            countryCode: string;
+            number: string;
+        };
     }>({
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
-        repeatPassword: ''
+        repeatPassword: '',
+        phoneNumber: {
+            countryCode: '',
+            number: '',
+        }
     });
 
     const handleShowModal = () => {
@@ -24,39 +37,78 @@ function Register() {
 
     const handleChangeForm = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+        if (name === "countryCode" || name === "number") {
+            setFormData({
+                ...formData,
+                phoneNumber: {
+                    ...formData.phoneNumber,
+                    [name]: value
+                }
+            });
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value
+            });
+        }
     };
 
-    const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmitForm = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('Form Data:', formData);
+        
+        const userDto = {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            password: formData.password,
+            phoneNumber: {
+                countryCode: formData.phoneNumber.countryCode,
+                number: formData.phoneNumber.number
+            }
+        };
+
+        try {
+            //await axios.post('YOUR_BACKEND_ENDPOINT', userDto);
+            console.log('Form data sent successfully:', userDto);
+            setShowModal(false);
+        } catch (error) {
+            console.error('Error submitting form data:', error);
+        }
     };
 
     return (
         <>
-            <Button type="primary" onClick={handleShowModal}>
-                Zarejestruj się
-            </Button>
-            <Modal
-                title="Rejestracja"
-                open={showModal}
-                onCancel={handleCloseModal}
-                footer={null}
-                className='registerModal'
-            >
                 <Form layout="vertical" onSubmitCapture={handleSubmitForm}>
+                    <Form.Item
+                        label="Imię"
+                        name="firstName"
+                        rules={[{ required: true, message: 'Proszę podać imię' }]}
+                    >
+                        <Input
+                            placeholder="Imię"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleChangeForm}
+                        />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Nazwisko"
+                        name="lastName"
+                        rules={[{ required: true, message: 'Proszę podać nazwisko' }]}
+                    >
+                        <Input
+                            placeholder="Nazwisko"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChangeForm}
+                        />
+                    </Form.Item>
+
                     <Form.Item
                         label="Adres E-mail"
                         name="email"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Proszę podać adres e-mail',
-                            },
-                        ]}
+                        rules={[{ required: true, message: 'Proszę podać adres e-mail' }]}
                     >
                         <Input
                             type="email"
@@ -71,12 +123,7 @@ function Register() {
                     <Form.Item
                         label="Hasło"
                         name="password"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Proszę podać hasło',
-                            },
-                        ]}
+                        rules={[{ required: true, message: 'Proszę podać hasło' }]}
                     >
                         <Input.Password
                             placeholder="Hasło"
@@ -90,10 +137,7 @@ function Register() {
                         label="Powtórz hasło"
                         name="repeatPassword"
                         rules={[
-                            {
-                                required: true,
-                                message: 'Proszę powtórzyć hasło',
-                            },
+                            { required: true, message: 'Proszę powtórzyć hasło' },
                             ({ getFieldValue }) => ({
                                 validator(_, value) {
                                     if (!value || getFieldValue('password') === value) {
@@ -112,13 +156,38 @@ function Register() {
                         />
                     </Form.Item>
 
+                    <Form.Item
+                        label="Kod kraju telefonu"
+                        name="countryCode"
+                        rules={[{ required: true, message: 'Proszę podać kod kraju' }]}
+                    >
+                        <Input
+                            placeholder="Kod kraju telefonu"
+                            name="countryCode"
+                            value={formData.phoneNumber.countryCode}
+                            onChange={handleChangeForm}
+                        />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Numer telefonu"
+                        name="number"
+                        rules={[{ required: true, message: 'Proszę podać numer telefonu' }]}
+                    >
+                        <Input
+                            placeholder="Numer telefonu"
+                            name="number"
+                            value={formData.phoneNumber.number}
+                            onChange={handleChangeForm}
+                        />
+                    </Form.Item>
+
                     <Form.Item>
                         <Button type="primary" htmlType="submit" block>
                             Zarejestruj się
                         </Button>
                     </Form.Item>
                 </Form>
-            </Modal>
         </>
     );
 }

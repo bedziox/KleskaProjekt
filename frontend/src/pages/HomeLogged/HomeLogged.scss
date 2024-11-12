@@ -1,0 +1,37 @@
+@use '../../variables';
+
+.homeLogged_section {
+    width: 100vw;
+    height: 100svh;
+    min-height: 770px;
+    padding: 6rem 8rem;
+    display: flex;
+    justify-content: center;
+
+    @media screen and (max-width: variables.$resize-lg) {
+        padding: 6rem 1rem;
+    }
+
+    .homeLogged_wrapper {
+        width: 100%;
+        max-width: 1400px;
+
+        .latestAnnouncements {
+            width: 100%;
+
+            h1 {
+                width: 100%;
+                text-align: left;
+                font-size: 1.5rem;
+            }
+
+            .latestAnnouncements_wrapper {
+                width: 100%;
+                display: flex;
+                gap:1rem;
+                overflow-x: scroll;
+                padding-bottom: 1rem;
+            }
+        }
+    }
+}
