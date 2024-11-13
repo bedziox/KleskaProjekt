@@ -1,17 +1,17 @@
 import { ChangeEvent, useState, FormEvent } from 'react';
 import { Button, Modal, Form, Input } from 'antd';
 import './Login.scss';
+import axios from 'axios';
+import { useAuth } from '../../context/AuthContext.tsx';
 
 function Login() {
     const [showModal, setShowModal] = useState<boolean>(true);
     const [formData, setFormData] = useState<{
         email: string;
         password: string;
-        repeatPassword: string;
     }>({
         email: '',
         password: '',
-        repeatPassword: ''
     });
 
     const handleChangeForm = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,9 +22,18 @@ function Login() {
         });
     };
 
-    const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
+    const { login } = useAuth();
+
+    const handleSubmitForm = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('Form Data:', formData);
+        const res = await axios.post("http://localhost:8080/auth/login", formData)
+        if (res.status === 200) {
+            console.log(res)
+            login(res)
+        } else {
+            console.error(res)
+        }
     };
 
     return (

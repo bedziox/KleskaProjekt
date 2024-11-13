@@ -16,7 +16,7 @@ const TopbarLogged: React.FC = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
           <Nav  className="ms-auto">
-              <Nav.Link href="#">Moje konto</Nav.Link>
+              <Nav.Link href="/myaccount">Moje konto</Nav.Link>
               <Nav.Link href="#">Zobacz ogłoszenia</Nav.Link>
             </Nav>
             <Nav>

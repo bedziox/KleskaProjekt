@@ -1,6 +1,6 @@
 import { ChangeEvent, useState, FormEvent } from 'react';
 import { Button, Modal, Form, Input } from 'antd';
-//import axios from 'axios';
+import axios from 'axios';
 import './Register.scss';
 
 function Register() {
@@ -68,7 +68,7 @@ function Register() {
         };
 
         try {
-            //await axios.post('YOUR_BACKEND_ENDPOINT', userDto);
+            await axios.post('http://localhost:8080/auth/register', userDto);
             console.log('Form data sent successfully:', userDto);
             setShowModal(false);
         } catch (error) {

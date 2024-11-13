@@ -5,7 +5,7 @@ interface AuthContextType {
   isLoggedIn: boolean;
   userName: string;
   userToken: string | null;
-  login: (res: { data: { userLogin: string; token: string } }) => void;
+  login: (res: { data: { token: string } }) => void;
   logout: () => void;
 }
 
@@ -21,9 +21,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [userToken, setUserToken] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const login = (res: { data: { userLogin: string; token: string } }) => {
+  const login = (res: { data: { token: string } }) => {
     setIsLoggedIn(true);
-    setUserName(res.data.userLogin);
     setUserToken(res.data.token);
     navigate("/");
   };
