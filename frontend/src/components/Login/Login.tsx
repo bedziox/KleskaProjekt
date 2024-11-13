@@ -3,7 +3,7 @@ import { Button, Modal, Form, Input } from 'antd';
 import './Login.scss';
 
 function Login() {
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<boolean>(true);
     const [formData, setFormData] = useState<{
         email: string;
         password: string;
@@ -13,14 +13,6 @@ function Login() {
         password: '',
         repeatPassword: ''
     });
-
-    const handleShowModal = () => {
-        setShowModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
 
     const handleChangeForm = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -37,16 +29,6 @@ function Login() {
 
     return (
         <>
-            <Button type="primary" onClick={handleShowModal}>
-                Zaloguj się
-            </Button>
-            <Modal
-                title="Zaloguj się!"
-                open={showModal}
-                onCancel={handleCloseModal}
-                footer={null}
-                className='registerModal'
-            >
                 <Form layout="vertical" onSubmitCapture={handleSubmitForm}>
                     <Form.Item
                         label="Adres E-mail"
@@ -85,40 +67,12 @@ function Login() {
                             onChange={handleChangeForm}
                         />
                     </Form.Item>
-
-                    <Form.Item
-                        label="Powtórz hasło"
-                        name="repeatPassword"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Proszę powtórzyć hasło',
-                            },
-                            ({ getFieldValue }) => ({
-                                validator(_, value) {
-                                    if (!value || getFieldValue('password') === value) {
-                                        return Promise.resolve();
-                                    }
-                                    return Promise.reject(new Error('Hasła muszą być takie same!'));
-                                },
-                            }),
-                        ]}
-                    >
-                        <Input.Password
-                            placeholder="Powtórz hasło"
-                            name="repeatPassword"
-                            value={formData.repeatPassword}
-                            onChange={handleChangeForm}
-                        />
-                    </Form.Item>
-
                     <Form.Item>
                         <Button type="primary" htmlType="submit" block>
                             Zaloguj się
                         </Button>
                     </Form.Item>
                 </Form>
-            </Modal>
         </>
     );
 }

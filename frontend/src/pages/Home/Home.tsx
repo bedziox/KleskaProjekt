@@ -3,6 +3,7 @@ import './Home.scss';
 import { Button } from "antd";
 import heartHand from '../../assets/heart-hand.svg';
 import AuthModal from "../../components/Auth/AuthModal";
+import Topbar from "../../components/Topbar/Topbar";
 
 const Home: React.FC = () => {
 
@@ -14,6 +15,7 @@ const Home: React.FC = () => {
 
     return (
         <section className="home_section">
+        <Topbar />
             <div className="home_sectionImageVolunteer">
             </div>
             <div className="home_sectionWrapper">
