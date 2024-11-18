@@ -19,7 +19,7 @@ const Topbar: React.FC = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/">Strona główna</Nav.Link>
             </Nav>
             <Nav>
               <Button type="primary" onClick={openAuthModal}>

@@ -1,0 +1,45 @@
+@use '../../variables';
+
+.announcementCard {
+    transition: all .3s ease-in-out;
+
+    &:hover {
+        background-color:#e6e6e6;
+    }
+}
+
+.modal_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .modal_grid_column1 {
+        text-align: left;
+    }
+    
+    .modalAnnouncement {
+        padding: 1rem;
+        min-height: 50vh;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .modalAnnouncement_title {
+            font-size: 1.2rem;
+        }
+
+        .modalAnnouncement_details {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .modalContent2 {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-left: 1px solid rgba(0, 0, 0, 0.1);
+
+    }
+}
