@@ -100,7 +100,7 @@ function AnnouncementForm() {
 
                 <Form.Item
                     label="Wybierz kategorię"
-                    name="city"
+                    name="category"
                     rules={[
                         {
                             required: true,
@@ -109,6 +109,7 @@ function AnnouncementForm() {
                     ]}
                 >
                     <Select
+                    value={formData.category}
                     style={{ width: '100%', textAlign: 'left' }}
                     allowClear
                     options={[{ value: 'Kategoria1', label: 'Pomoc domowa' }, {value: 'Kategoria2', label: 'Wsparcie psychiczne'}, {value: 'Kategoria3', label: 'Transport'}]}
