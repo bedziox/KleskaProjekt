@@ -1,6 +1,5 @@
 import React,  {useState} from "react";
 import { Avatar, Card, Modal, Button } from 'antd';
-import { EditOutlined } from "@ant-design/icons";
 import './Announcement.scss';
 
 interface AnnouncementProps {

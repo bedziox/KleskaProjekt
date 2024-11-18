@@ -19,11 +19,11 @@ const TopbarLogged: React.FC = () => {
               <Nav.Link href="/myaccount">Moje konto</Nav.Link>
               <Nav.Link href="#">Zobacz ogłoszenia</Nav.Link>
             </Nav>
-            <Nav>
+            <Nav.Link href="/add-announcement">
               <Button type="primary">
                 Dodaj ogłoszenie
               </Button>
-            </Nav>
+            </Nav.Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

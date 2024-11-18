@@ -4,6 +4,7 @@ import Home from './pages/Home/Home.tsx'
 import HomeLogged from './pages/HomeLogged/HomeLogged.tsx'
 import UserPanel from './pages/UserPanel/UserPanel.tsx'
 import { AuthProvider } from './context/AuthContext.tsx'
+import AddAnnouncement from './pages/AddAnnouncement/AddAnnouncement.tsx'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<HomeLogged />} />
           <Route path="/myaccount" element={<UserPanel />} />
+          <Route path="/add-announcement" element={<AddAnnouncement />} />
         </Routes>
         </AuthProvider>
       </div>

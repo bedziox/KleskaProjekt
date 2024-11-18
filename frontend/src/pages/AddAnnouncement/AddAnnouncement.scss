@@ -1,0 +1,21 @@
+@use '../../variables';
+
+.addAnnouncement_section {
+    width: 100vw;
+    height: 100svh;
+    min-height: 770px;
+    padding: 6rem 8rem;
+    display: flex;
+    justify-content: center;
+
+    @media screen and (max-width: variables.$resize-lg) {
+        padding: 6rem 1rem;
+    }
+
+    .announcemenetForm_wrapper {
+        width: 100%;
+        max-width: 1400px;
+        display: flex;
+        justify-content: center;
+    }
+}
