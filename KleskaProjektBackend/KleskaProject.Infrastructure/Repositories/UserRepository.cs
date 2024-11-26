@@ -59,5 +59,10 @@ public class UserRepository : IUserRepository
     {
         return _context.Users.Where(db => db.Email == email) != null;
     }
+    public User Update(User user)
+    {
+        _context.Users.Update(user);
+        return user;
+    }
 
 }

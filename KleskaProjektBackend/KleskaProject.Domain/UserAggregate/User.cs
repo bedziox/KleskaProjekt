@@ -10,6 +10,8 @@ public class User : ValueObject
     public string LastName { get; set; } = String.Empty;
     public string Email { get; set; } = String.Empty;
     public string PasswordHash { get; set; } = String.Empty;
+    public string RefreshToken { get; set; } = String.Empty;
+    public DateTime RefreshTokenExpiryTime { get; set; }
     public UserDetails UserDetails { get; set; }
 
     public User()

@@ -15,11 +15,6 @@ public class AuthController : Controller
     {
         _mediator = mediator;
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="request"></param>
-    /// <returns></returns>
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] UserDto request)
     {
@@ -36,17 +31,7 @@ public class AuthController : Controller
         var result = await _mediator.Send(new LoginUserCommand(email, password));
         if (result.IsSuccess)
         {
-            return Ok(result.Value);
-        }
-        return StatusCode((int)result.Error.StatusCode, new { error = result.Error.Details });
-    }
-    [HttpGet("valid")]
-    public async Task<IActionResult> ValidateToken(String token)
-    {
-        var result = await _mediator.Send(new ValidateTokenCommand(token));
-        if (result.IsSuccess)
-        {
-            return Ok(result.Value);
+            return Ok();
         }
         return StatusCode((int)result.Error.StatusCode, new { error = result.Error.Details });
     }
