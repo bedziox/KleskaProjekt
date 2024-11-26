@@ -22,6 +22,8 @@ public class ApplicationDbContext : DbContext
             u.Property(u => u.LastName).IsRequired().HasMaxLength(100);
             u.Property(u => u.Email).IsRequired().HasMaxLength(255);
             u.Property(u => u.PasswordHash).IsRequired();
+            u.Property(u => u.RefreshToken);
+            u.Property(u => u.RefreshTokenExpiryTime);
 
             modelBuilder.Entity<User>()
             .HasIndex(u => u.Email)

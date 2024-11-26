@@ -1,5 +1,5 @@
 ﻿using KleskaProject.Application.Services;
-using KleskaProject.Domain.UserAggregate;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace KleskaProject.Application
@@ -8,8 +8,8 @@ namespace KleskaProject.Application
     {
         public static IServiceCollection AddAppliaction(this IServiceCollection services)
         {
-            services.AddScoped<IUserService, UserService>();
-
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             return services;
 
         }

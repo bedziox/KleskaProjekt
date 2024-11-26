@@ -30,6 +30,7 @@ RUN dotnet test "Domain.UnitTests/Domain.UnitTests.csproj" --no-restore --config
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
+WORKDIR "/src/KleskaProject.API"
 RUN dotnet publish "./KleskaProject.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
